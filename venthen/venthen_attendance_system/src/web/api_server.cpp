@@ -2,9 +2,8 @@
 
 #include <WebServer.h>
 #include <ArduinoJson.h>
-
+#include "../device/device_service.h"
 #include "../storage/storage.h"
-
 WebServer server(80);
 
 void handleStatus()
@@ -36,10 +35,10 @@ void handleInfo()
     JsonDocument doc;
 
     doc["deviceId"] =
-        "VTH001";
+        DeviceService::getDeviceId();
 
     doc["firmware"] =
-        "1.0.0";
+        DeviceService::getFirmware();
 
     doc["wifiConfigured"] =
         Storage::isWifiConfigured();

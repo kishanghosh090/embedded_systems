@@ -7,4 +7,7 @@
 
 #define BACKEND_URL "http://192.168.1.7:3000/devices/provision"
 
+#define MQTT_HOST "192.168.1.7"
+#define MQTT_PORT 1883
+
 #endif

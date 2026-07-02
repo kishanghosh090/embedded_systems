@@ -1,5 +1,5 @@
 #include <Arduino.h>
-
+#include "mqtt/mqtt_service.h"
 #include "storage/storage.h"
 #include "wifi/wifi_manager.h"
 #include "ap/ap_manager.h"
@@ -56,7 +56,7 @@ void setup()
                         "Provision Success");
                 }
             }
-
+            MQTTService::begin();
             ApiServer::begin();
         }
     }
@@ -66,4 +66,5 @@ void loop()
 {
 
     ApiServer::handle();
+    MQTTService::loop();
 }
