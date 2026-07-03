@@ -3,7 +3,7 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
-
+#include "../command/command_service.h"
 #include "../../include/constants.h"
 
 #include "../device/device_service.h"
@@ -30,23 +30,17 @@ void callback(
 
     String message;
 
-    for (
-        int i = 0;
-        i < length;
-        i++)
+    for (unsigned int i = 0; i < length; i++)
     {
-        message +=
-            (char)payload[i];
+
+        message += (char)payload[i];
     }
 
     Serial.println();
-    Serial.println("MQTT Message");
-
     Serial.print("Topic: ");
     Serial.println(topic);
 
-    Serial.print("Payload: ");
-    Serial.println(message);
+    CommandService::handle(message);
 }
 
 void reconnect()
